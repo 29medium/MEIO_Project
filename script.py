@@ -65,17 +65,12 @@ def run(s, S, title):
     calculaTempoEncomenda(0, s, tempo_encomenda, stock)
     calculaCustos(0, stock, custo_posse, custo_quebra, custo_encomenda, tempo_encomenda)
 
-    for i in range(1,ciclos):
-        stock.append(stock[i-1]-procura[i])
-        calculaTempoEncomenda(i, s, tempo_encomenda, stock)
-        calculaCustos(i, stock, custo_posse, custo_quebra,
-                      custo_encomenda, tempo_encomenda)
-
-    for i in range(ciclos,semanas):
+    for i in range(1,semanas):
         cycleIndex = i%ciclos + 1
         cycle = (i//ciclos) * ciclos - 1 
 
         if tempo_encomenda[cycle]==cycleIndex and cycleIndex != ciclos:
+            print(i)
             stock.append(stock[i-1]-procura[i]+S-stock[cycle])
         else:
             stock.append(stock[i-1]-procura[i])
@@ -90,6 +85,8 @@ def run(s, S, title):
 
     printCustos(custoTotal, stockMedio, quebras, title)
 
+print("\nValores para 2021")
+print(procura)
 
 run(initials, initialS, "Para s e S")
 run(initials*1.05, initialS, "Para s+5% e S")
