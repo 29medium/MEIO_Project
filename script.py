@@ -70,7 +70,6 @@ def run(s, S, title):
         cycle = (i//ciclos) * ciclos - 1 
 
         if tempo_encomenda[cycle]==cycleIndex and cycleIndex != ciclos:
-            print(i)
             stock.append(stock[i-1]-procura[i]+S-stock[cycle])
         else:
             stock.append(stock[i-1]-procura[i])
